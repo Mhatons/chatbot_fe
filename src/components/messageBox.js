@@ -71,6 +71,10 @@ export default function MessageBox({ openModal }) {
         }
     };
 
+    const handleGDPRClick = (externalLink) => {
+        window.open(externalLink, '_blank');
+    };
+
     const privacyStatus = localStorage.getItem("gdprStatus")
 
     return (
@@ -156,16 +160,20 @@ export default function MessageBox({ openModal }) {
                                     {
                                         showGdpr && (
                                             <div className="pt-0 min-h-[65px] py-2 text-center text-[12px] px-8">
-                                                To continue using the Avi chatbot, you must agree to the <b className=" cursor-pointer text-zinc-700">GDPR terms and privacy conditions</b>
+                                                To continue using the Avi chatbot, you must agree to the
+                                                <b onClick={() => handleGDPRClick("https://avenueimpactconsulting.com/privacy-policy/")} className=" cursor-pointer text-zinc-700">
+                                                    GDPR terms and privacy conditions
+                                                </b>
                                                 <div className="flex pt-1 items-center justify-center gap-2">
                                                     <button onClick={handlePrivacyAcceptance} className=" flex items-center gap-1 border hover:bg-green-50 text-green-600 border-green-600 rounded px-2 py-[1px]">
                                                         <p>Continue</p>
                                                         <IoCheckmarkCircleOutline className="text-[20px] " />
                                                     </button>
-                                                    <button onClick={openModal} className=" flex items-center hover:bg-red-50 text-red-600 border border-red-600 rounded px-2 py-[1px]">
+                                                    <button onClick={() => {handleGDPRClick("https://avenueimpactconsulting.com/about-us/"); openModal()}}  className=" flex items-center hover:bg-red-50 text-red-600 border border-red-600 rounded px-2 py-[1px]">
                                                         <p>Decline</p>
                                                         <IoClose className="text-[20px] " />
                                                     </button>
+                                                    
                                                 </div>
                                             </div>
                                         )

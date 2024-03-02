@@ -44,7 +44,7 @@ export default function AutomatedMessages({ changeLanguage }) {
                         }
                         {
                             changeLanguage && (
-                                <div className="text-center py-20">
+                                <div className="text-center py-16">
                                     <h4>Choose your language Preference.</h4>
                                     <h6>The default language is English</h6>
                                     <div className="pt-3">

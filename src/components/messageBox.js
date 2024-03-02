@@ -75,7 +75,7 @@ export default function MessageBox({ openModal }) {
 
     return (
         <div className=" shadow-2xl bg-[#FCFCFF] border-t overflow-hidden fixed smm:bottom-10 smmm:bottom-3 bottom-0 smm:right-20 smmm:right-3 smmm:w-[400px] w-full max-smmm:m-auto h-[30em] smmm:rounded-xl">
-            <div className="px-4 pb-10 pt-4 h-[26em] overflow-y-scroll hideScrollBar">
+            <div className="px-4 pb-10 pt-4 h-[25.5em] overflow-y-scroll hideScrollBar">
                 <AutomatedMessages changeLanguage={showLanguageOptions} />
 
                 {messages.map((message, index) => (
@@ -155,7 +155,7 @@ export default function MessageBox({ openModal }) {
                                 <>
                                     {
                                         showGdpr && (
-                                            <div className="pt-0 h-[80px] text-center text-[12px] px-8">
+                                            <div className="pt-0 min-h-[65px] py-2 text-center text-[12px] px-8">
                                                 To continue using the Avi chatbot, you must agree to the <b className=" cursor-pointer text-zinc-700">GDPR terms and privacy conditions</b>
                                                 <div className="flex pt-1 items-center justify-center gap-2">
                                                     <button onClick={handlePrivacyAcceptance} className=" flex items-center gap-1 border hover:bg-green-50 text-green-600 border-green-600 rounded px-2 py-[1px]">

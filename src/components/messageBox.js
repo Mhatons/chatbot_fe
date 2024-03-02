@@ -155,7 +155,7 @@ export default function MessageBox({ openModal }) {
                                 <>
                                     {
                                         showGdpr && (
-                                            <div className="pt-0 h-[75px] text-center text-[12px] px-8">
+                                            <div className="pt-0 h-[80px] text-center text-[12px] px-8">
                                                 To continue using the Avi chatbot, you must agree to the <b className=" cursor-pointer text-zinc-700">GDPR terms and privacy conditions</b>
                                                 <div className="flex pt-1 items-center justify-center gap-2">
                                                     <button onClick={handlePrivacyAcceptance} className=" flex items-center gap-1 border hover:bg-green-50 text-green-600 border-green-600 rounded px-2 py-[1px]">
@@ -177,7 +177,7 @@ export default function MessageBox({ openModal }) {
                 )
             }
 
-            <div className="absolute top-4 right-2 z-20">
+            <div className="absolute  top-6 right-2 z-20">
                 <IoClose onClick={openModal} className=" text-[20px] cursor-pointer hover:text-red-500 bg-white" />
             </div>
         </div>

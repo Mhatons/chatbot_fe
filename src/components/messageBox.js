@@ -1,9 +1,10 @@
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { IoCheckmark, IoCheckmarkCircleOutline, IoClose, IoPersonOutline } from "react-icons/io5";
 import { RiSendPlane2Fill } from "react-icons/ri";
 import { LoadingIcon } from "../assets/images";
 import AutomatedMessages from "../utils/automatedMesages";
+import { myContext } from "../context";
 
 export default function MessageBox({ openModal }) {
     const [messages, setMessages] = useState([]);
@@ -12,6 +13,25 @@ export default function MessageBox({ openModal }) {
     const [showGdpr, setShowGdpr] = useState(true);
     const [showLanguageOptions, setLanguageOptions] = useState(false);
     const messagesEndRef = useRef(null);
+
+    const { selectedLanguage } = useContext(myContext)
+
+    // const selectedLanguageOption = localStorage.getItem("language")
+
+    // useEffect(() => {
+    //     // Listen for changes to selectedLanguage in localStorage
+    //     const handleStorageChange = () => {
+    //         setSelectedLanguage(localStorage.getItem("language") || "english");
+    //     };
+
+    //     window.addEventListener("storage", handleStorageChange);
+
+    //     return () => {
+    //         console.log("ccccccccccccc", selectedLanguage)
+    //         window.removeEventListener("storage", handleStorageChange);
+    //     };
+    // }, []);
+    // console.log("vvvvvvvvvvvvvvvvvv", selectedLanguage)
 
     useEffect(() => {
         setTimeout(() => {
@@ -75,7 +95,7 @@ export default function MessageBox({ openModal }) {
         window.open(externalLink, '_blank');
     };
 
-    const privacyStatus = localStorage.getItem("gdprStatus")
+    const privacyStatus = localStorage.getItem("gdprStatus");
 
     return (
         <div className=" shadow-2xl bg-[#FCFCFF] border-t overflow-hidden fixed smm:bottom-10 smmm:bottom-3 bottom-0 smm:right-20 smmm:right-3 smmm:w-[400px] w-full max-smmm:m-auto h-[30em] smmm:rounded-xl">
@@ -160,20 +180,58 @@ export default function MessageBox({ openModal }) {
                                     {
                                         showGdpr && (
                                             <div className="pt-0 min-h-[65px] py-2 text-center text-[12px] px-8">
-                                                To continue using the Avi chatbot, you must agree to the
-                                                <b onClick={() => handleGDPRClick("https://avenueimpactconsulting.com/privacy-policy/")} className=" cursor-pointer text-zinc-700">
-                                                    GDPR terms and privacy conditions
-                                                </b>
+                                                {
+                                                    selectedLanguage === "english" && (
+                                                        <>
+                                                            To continue using the Avi chatbot, you must agree to the
+                                                            <b onClick={() => handleGDPRClick("https://avenueimpactconsulting.com/privacy-policy/")} className=" cursor-pointer text-zinc-700">
+                                                                {` GDPR `}
+                                                            </b>
+                                                            terms and privacy conditions
+                                                        </>
+                                                    )
+                                                }
+                                                {
+                                                    selectedLanguage === "french" && (
+                                                        <>
+
+                                                            Pour continuer à utiliser le chatbot Avi, vous devez accepter les conditions du
+                                                            <b onClick={() => handleGDPRClick("https://avenueimpactconsulting.com/privacy-policy/")} className=" cursor-pointer text-zinc-700">
+                                                                {` GDPR `}
+                                                            </b>
+                                                            et les conditions de confidentialité.
+                                                        </>
+                                                    )
+                                                }
+                                                {
+                                                    selectedLanguage === "spanish" && (
+                                                        <>
+                                                            Para continuar utilizando el chatbot Avi, debes aceptar los términos del
+                                                            <b onClick={() => handleGDPRClick("https://avenueimpactconsulting.com/privacy-policy/")} className=" cursor-pointer text-zinc-700">
+                                                                {` GDPR `}
+                                                            </b>
+                                                            y las condiciones de privacidad.
+                                                        </>
+                                                    )
+                                                }
                                                 <div className="flex pt-1 items-center justify-center gap-2">
                                                     <button onClick={handlePrivacyAcceptance} className=" flex items-center gap-1 border hover:bg-green-50 text-green-600 border-green-600 rounded px-2 py-[1px]">
-                                                        <p>Continue</p>
+                                                        {
+                                                            selectedLanguage === "english" ? <p>Continue</p> :
+                                                                selectedLanguage === "french" ? <p>Continuer</p> :
+                                                                    selectedLanguage === "spanish" ? <p>Continuar</p> : ""
+                                                        }
                                                         <IoCheckmarkCircleOutline className="text-[20px] " />
                                                     </button>
-                                                    <button onClick={() => {handleGDPRClick("https://avenueimpactconsulting.com/about-us/"); openModal()}}  className=" flex items-center hover:bg-red-50 text-red-600 border border-red-600 rounded px-2 py-[1px]">
-                                                        <p>Decline</p>
+                                                    <button onClick={() => { handleGDPRClick("https://avenueimpactconsulting.com/about-us/"); openModal() }} className=" flex items-center hover:bg-red-50 text-red-600 border border-red-600 rounded px-2 py-[1px]">
+                                                        {
+                                                            selectedLanguage === "english" ? <p>Decline</p> :
+                                                                selectedLanguage === "french" ? <p>Décliner</p> :
+                                                                    selectedLanguage === "spanish" ? <p>Rechazar</p> : ""
+                                                        }
                                                         <IoClose className="text-[20px] " />
                                                     </button>
-                                                    
+
                                                 </div>
                                             </div>
                                         )

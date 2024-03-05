@@ -1,13 +1,25 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { aiIcon } from "../assets/images";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
+import { myContext } from "../context";
 
 export default function AutomatedMessages({ changeLanguage }) {
-    const [selectedLanguage, setSelectedLanguage] = useState("english");
+    // const [selectedLanguage, setSelectedLanguage] = useState("english");
+    // const [selectedLanguage, setSelectedLanguage] = useState(() => localStorage.getItem("language") || "english");
+
+    const { selectedLanguage, setSelectedLanguage } = useContext(myContext)
+
+    console.log("selected Langauge", selectedLanguage)
 
     const privacyStatus = localStorage.getItem("gdprStatus")
-    console.log(privacyStatus)
 
+    function handleSelection(language) {
+        console.log(language)
+        localStorage.setItem("language", language)
+        setSelectedLanguage(language)
+    }
+
+    console.log(privacyStatus)
     const languages = [
         {
             title: "english",
@@ -53,7 +65,7 @@ export default function AutomatedMessages({ changeLanguage }) {
                                                 <div className="relative">
                                                     <button
                                                         style={{ backgroundColor: language.color }}
-                                                        onClick={() => setSelectedLanguage(language.title)}
+                                                        onClick={() => handleSelection(language.title)}
                                                         className=" hover:px-24 font-semibold text-white capitalize duration-500 px-20 py-2 text-sm rounded-full cursor-pointer mt-2">
                                                         {language.title}
                                                     </button>

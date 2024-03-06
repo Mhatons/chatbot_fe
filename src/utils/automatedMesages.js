@@ -88,7 +88,7 @@ export default function AutomatedMessages({ changeLanguage }) {
                                 <img src={aiIcon} alt="Welcome!!!" className="w-full" />
                             </div>
                             <div className={` mb-3 text-[18px] text-zinc-600`}>
-                                <p>Hello! my name is <b>Jimmy Smart</b>, I am your Virtual Assistant.</p>
+                                <p>Hello! my name is <b>Jimmy Smart</b>, I am your Virtual Assistant. How may I help you today?</p>
                             </div>
                         </div>
                     </div>

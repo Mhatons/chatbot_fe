@@ -196,8 +196,8 @@ export default function MessageBox({ openModal }) {
                                                         <>
 
                                                             Pour continuer à utiliser le chatbot Avi, vous devez accepter les conditions du
-                                                            <b onClick={() => handleGDPRClick("https://avenueimpactconsulting.com/privacy-policy/")} className=" cursor-pointer text-zinc-700">
-                                                                {` GDPR `}
+                                                            <b onClick={() => handleGDPRClick("https://docs.google.com/document/d/1J-cwufGG7RDQ3KEveZuX1xDLMBdHwT6F-qQNWAKguy0/edit?usp=sharing")} className=" cursor-pointer text-zinc-700">
+                                                                {` RGPD `}
                                                             </b>
                                                             et les conditions de confidentialité.
                                                         </>
@@ -207,8 +207,8 @@ export default function MessageBox({ openModal }) {
                                                     selectedLanguage === "spanish" && (
                                                         <>
                                                             Para continuar utilizando el chatbot Avi, debes aceptar los términos del
-                                                            <b onClick={() => handleGDPRClick("https://avenueimpactconsulting.com/privacy-policy/")} className=" cursor-pointer text-zinc-700">
-                                                                {` GDPR `}
+                                                            <b onClick={() => handleGDPRClick("https://docs.google.com/document/d/1aOcJ2WKyQospEV3l9DHzAjd-YBR1qfozX3a9Spm9Z6s/edit?usp=sharing")} className=" cursor-pointer text-zinc-700">
+                                                                {` RGPD `}
                                                             </b>
                                                             y las condiciones de privacidad.
                                                         </>

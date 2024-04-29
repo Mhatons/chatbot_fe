@@ -8,13 +8,16 @@ export default function ChatBox() {
     useEffect(() => {
         setTimeout(() => {
             setOpenChat(true)
-        }, 4000);
+        }, 5000);
     }, [])
 
     return (
         <div className="">
-            {/* <div className="smmm:fixed bottom-2 right-3"> */}
-            <div onClick={() => setOpenChat(!openChat)} className="h-14 fixed bottom-2 right-3 w-14 rounded-full shadow-md flex justify-center items-center cursor-pointer">
+            <div
+                onClick={() =>
+                    setOpenChat(!openChat)}
+                className="h-14 fixed bottom-2 right-3 w-14 rounded-full shadow-md flex justify-center items-center cursor-pointer"
+            >
                 <IoChatbubbleEllipses className=" text-[30px] text-orange-500 " />
             </div>
             {

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { IoCheckmark, IoCheckmarkCircleOutline, IoClose, IoPersonOutline } from "react-icons/io5";
+import { IoCheckmark, IoCheckmarkCircleOutline, IoClose, IoLockClosedOutline, IoPersonOutline } from "react-icons/io5";
 import { RiSendPlane2Fill } from "react-icons/ri";
 import { LoadingIcon } from "../assets/images";
 import AutomatedMessages from "../utils/automatedMesages";
@@ -12,6 +12,7 @@ export default function MessageBox({ openModal }) {
     const [isLoading, setIsLoading] = useState(false);
     const [showGdpr, setShowGdpr] = useState(true);
     const [showLanguageOptions, setLanguageOptions] = useState(false);
+    const [isEncryption, setEncryption] = useState(false)
     const messagesEndRef = useRef(null);
 
     const { selectedLanguage } = useContext(myContext)
@@ -98,7 +99,7 @@ export default function MessageBox({ openModal }) {
     const privacyStatus = localStorage.getItem("gdprStatus");
 
     return (
-        <div className=" shadow-2xl bg-[#FCFCFF] border-t overflow-hidden fixed smm:bottom-10 smmm:bottom-3 bottom-0 smm:right-20 smmm:right-3 smmm:w-[400px] w-full max-smmm:m-auto h-[30em] smmm:rounded-xl">
+        <div className=" shadow-2xl bg-[#FCFCFF] border-t overflow-hidden fixed smm:bottom-10 smmm:bottom-3 bottom-0 smm:right-20 smmm:right-3 smmm:w-[350px] w-full max-smmm:m-auto h-[30em] smmm:rounded-xl">
             <div className="px-4 pb-10 pt-4 h-[25.5em] overflow-y-scroll hideScrollBar">
                 <AutomatedMessages changeLanguage={showLanguageOptions} />
 
@@ -140,7 +141,17 @@ export default function MessageBox({ openModal }) {
             {
                 privacyStatus === "true" && (
                     <div className="h-[65px] w-full absolute border-t bottom-0 flex justify-center items-center ">
-                        <div className="flex items-center w-[90%] m-auto gap-2  py-2 px-4 rounded-full">
+                        <div className="flex items-center w-[95%] m-auto gap-2  py-2 px-4 rounded-full">
+                            <div className="relative">
+                                <IoLockClosedOutline onClick={() => setEncryption(!isEncryption)} className=" text-zinc-500 text-md cursor-pointer hover:text-zinc-700" />
+                                {
+                                    isEncryption && (
+                                        <div className=" p-2 rounded-md absolute top-[-50px] text-[9px] w-[160px] bg-white shadow-xl">
+                                            This conversation is encrypted with end to end user privacy policy
+                                        </div>
+                                    )
+                                }
+                            </div>
                             <input
                                 type="text"
                                 placeholder="ask questions"
@@ -243,8 +254,8 @@ export default function MessageBox({ openModal }) {
                 )
             }
 
-            <div className="absolute  top-6 right-2 z-20">
-                <IoClose onClick={openModal} className=" text-[20px] cursor-pointer hover:text-red-500 bg-white" />
+            <div className="absolute  top-2 right-2 z-20">
+                <IoClose onClick={openModal} className=" closeBtn text-[30px] border rounded-full p-1 hover:bg-red-500 cursor-pointer hover:text-white " />
             </div>
         </div>
     );

@@ -4,10 +4,13 @@ export const myContext = createContext();
 
 function PostProvider({ children }) {
     const [selectedLanguage, setSelectedLanguage] = useState(() => localStorage.getItem("language") || "english");
+    const [isUser, setIsUser] = useState(false);
 
     const exportedData = {
         selectedLanguage,
-        setSelectedLanguage
+        setSelectedLanguage,
+        isUser,
+        setIsUser
     }
 
     return (

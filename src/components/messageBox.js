@@ -15,7 +15,7 @@ export default function MessageBox({ openModal }) {
     const [isEncryption, setEncryption] = useState(false)
     const messagesEndRef = useRef(null);
 
-    const { selectedLanguage } = useContext(myContext)
+    const { selectedLanguage, isUser } = useContext(myContext)
 
     // const selectedLanguageOption = localStorage.getItem("language")
 
@@ -139,7 +139,7 @@ export default function MessageBox({ openModal }) {
                 }
             </div>
             {
-                privacyStatus === "true" && (
+                privacyStatus === "true" && isUser &&  (
                     <div className="h-[65px] w-full absolute border-t bottom-0 flex justify-center items-center ">
                         <div className="flex items-center w-[95%] m-auto gap-2  py-2 px-4 rounded-full">
                             <div className="relative">

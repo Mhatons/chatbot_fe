@@ -7,19 +7,23 @@ export default function AutomatedMessages({ changeLanguage }) {
     // const [selectedLanguage, setSelectedLanguage] = useState("english");
     // const [selectedLanguage, setSelectedLanguage] = useState(() => localStorage.getItem("language") || "english");
 
-    const { selectedLanguage, setSelectedLanguage } = useContext(myContext)
-    const [values, setValues] = useState({ name: "", email: "" });
+    const { selectedLanguage, setSelectedLanguage, isUser, setIsUser } = useContext(myContext)
+    const [values, setValues] = useState({ name: "", email: "", phone: "" });
     const [isDisabled, setIsDisabled] = useState(true);
-    const [isUser, setIsUser] = useState(false);
+    // const [isUser, setIsUser] = useState(false);
     const [userName, setUserName] = useState("");
+    const [info, setInfo] = useState("");
 
-    const handleSubmit = () => {
-        if (values.name && values.email !== "") {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (values.name !== "" && values.email !== "" && values.phone !== "") {
             console.log(values);
             localStorage.setItem("user", JSON.stringify(values))
             setUserName(values.name)
             setValues(" ");
             setIsUser(true);
+        } else {
+            setInfo("ensure no field is empty")
         }
     }
 
@@ -131,13 +135,21 @@ export default function AutomatedMessages({ changeLanguage }) {
                             !isUser && (
                                 <div className="text-center pt-20">
                                     <p>You're almost there. to complere your registeration, please enter your name and email below</p>
-                                    <form onSubmit={handleSubmit} className=" text-left w-[80%] m-auto">
+                                    <form onSubmit={(e) => handleSubmit(e)} className=" text-left w-[80%] m-auto">
                                         <div className="pt-4">
                                             <input
                                                 type="text"
                                                 onChange={(e) => setValues({ ...values, name: e.target.value })}
                                                 placeholder="name(s)"
-                                                className="border focus:border-green-500 p-3 w-full outline-none rounded-md"
+                                                className=" shadow-md focus:shadow-none focus:border focus:border-green-500 p-3 w-full outline-none rounded-md"
+                                            />
+                                        </div>
+                                        <div className="pt-4">
+                                            <input
+                                                type="number"
+                                                onChange={(e) => setValues({ ...values, phone: e.target.value })}
+                                                placeholder="phone number(s)"
+                                                className="shadow-md focus:shadow-none focus:border focus:border-green-500 p-3 w-full outline-none rounded-md"
                                             />
                                         </div>
                                         <div className="pt-4">
@@ -145,10 +157,11 @@ export default function AutomatedMessages({ changeLanguage }) {
                                                 type="email"
                                                 onChange={(e) => setValues({ ...values, email: e.target.value })}
                                                 placeholder="email address"
-                                                className="border focus:border-green-500 p-3 w-full outline-none rounded-md"
+                                                className="shadow-md focus:shadow-none focus:border focus:border-green-500 p-3 w-full outline-none rounded-md"
                                             />
                                         </div>
                                         <button className={`p-2 ${!isDisabled ? "bg-orange-500 text-white" : "bg-orange-50"} duration-700 w-full mt-4 rounded-md`}>Submit</button>
+                                        <div className="text-red-600 text-[12px] text-center pt-2 font-mono">{info}</div>
                                     </form>
                                 </div>
                             )

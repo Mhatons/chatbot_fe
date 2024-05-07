@@ -190,7 +190,7 @@ export default function MessageBox({ openModal }) {
                                 <>
                                     {
                                         showGdpr && (
-                                            <div className="pt-0 min-h-[65px] py-2 text-center text-[12px] px-8">
+                                            <div className="pt-0 min-h-[65px] py-2 text-center text-[12px] px-4">
                                                 {
                                                     selectedLanguage === "english" && (
                                                         <>
@@ -254,7 +254,7 @@ export default function MessageBox({ openModal }) {
                 )
             }
 
-            <div className="absolute  top-2 right-2 z-20">
+            <div className="absolute top-2 right-2 z-20">
                 <IoClose onClick={openModal} className=" closeBtn text-[30px] border rounded-full p-1 hover:bg-red-500 cursor-pointer hover:text-white " />
             </div>
         </div>

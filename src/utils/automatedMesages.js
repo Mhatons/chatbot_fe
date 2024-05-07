@@ -11,7 +11,7 @@ export default function AutomatedMessages({ changeLanguage }) {
     const [values, setValues] = useState({ name: "", email: "" });
     const [isDisabled, setIsDisabled] = useState(true);
     const [isUser, setIsUser] = useState(false);
-    const [userName, setUserName] = useState("")
+    const [userName, setUserName] = useState("");
 
     const handleSubmit = () => {
         if (values.name && values.email !== "") {
@@ -85,19 +85,35 @@ export default function AutomatedMessages({ changeLanguage }) {
                         {
                             changeLanguage && (
                                 <div className="text-center py-16">
-                                    <h4>Choose your language Preference.</h4>
-                                    <h6>The default language is English</h6>
+                                    {
+                                        selectedLanguage === "spanish" ? (
+                                            <>
+                                                <h4>Elige tu preferencia de idioma.</h4>
+                                                <h6>El idioma predeterminado es inglés.</h6>
+                                            </>
+                                        ) : selectedLanguage === "french" ? (
+                                            <>
+                                                <h4>Choisissez votre préférence de langue.</h4>
+                                                <h6>La langue par défaut est l'anglais.</h6>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <h4>Choose your language Preference.</h4>
+                                                <h6>The default language is English</h6>
+                                            </>
+                                        )
+                                    }
                                     <div className="pt-3">
                                         {
                                             languages.map((language) => (
                                                 <div className="relative">
                                                     <button
-                                                        style={{ backgroundColor: language.color }}
+                                                        // style={{ backgroundColor: language.color, }}
                                                         onClick={() => handleSelection(language.title)}
-                                                        className=" hover:px-24 font-semibold text-white capitalize px-20 py-2 text-sm rounded-full cursor-pointer mt-2">
+                                                        className={`hover:bg-red-50 hover:text-red-600 border border-red-600 bg-red-600 font-semibold text-white capitalize px-20 py-2 text-sm rounded-full cursor-pointer mt-2`}>
                                                         {language.title}
                                                     </button>
-                                                    <IoCheckmarkCircleOutline className={`absolute right-10 ${selectedLanguage === language.title ? "" : "hidden"} top-3 text-2xl text-green-600`} />
+                                                    <IoCheckmarkCircleOutline className={`absolute right-7 ${selectedLanguage === language.title ? "" : "hidden"} top-3 text-2xl text-red-600`} />
                                                 </div>
                                             ))
                                         }
